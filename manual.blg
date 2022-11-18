@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: manual.aux
+The style file: JHEP.bst
+Database file #1: griffin.bib
+Warning--I didn't find a database entry for "paper"
+You've used 41 entries,
+            2217 wiz_defined-function locations,
+            894 strings with 12846 characters,
+and the built_in function-call counts, 15985 in all, are:
+= -- 1706
+> -- 556
+< -- 0
++ -- 161
+- -- 120
+* -- 1427
+:= -- 2158
+add.period$ -- 41
+call.type$ -- 41
+change.case$ -- 41
+chr.to.int$ -- 0
+cite$ -- 41
+duplicate$ -- 709
+empty$ -- 1412
+format.name$ -- 120
+if$ -- 4124
+int.to.chr$ -- 0
+int.to.str$ -- 41
+missing$ -- 164
+newline$ -- 127
+num.names$ -- 41
+pop$ -- 64
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 592
+stack$ -- 0
+substring$ -- 1304
+swap$ -- 381
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 130
+width$ -- 43
+write$ -- 440
+(There was 1 warning)
