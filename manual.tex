@@ -178,9 +178,9 @@ Pittsburgh, PA 15260, USA}
 %blabla
 %\end{abstract}
 
-\paragraph*{Program release:} GRIFFIN version 1.0 (September xx, 2022).
+\paragraph*{Program release:} GRIFFIN version 1.0 (November 18, 2022).
 \paragraph*{Language:} C++11 (2011 ISO C++), for example {\tt gcc 4.8.1} and beyond.
-\paragraph*{Download:} \url{http://}
+\paragraph*{Download:} \url{http://github.com/lisongc/GRIFFIN/releases/tag/v1.0.0}
 
 \section{Theoretical framework}
 
@@ -248,7 +248,7 @@ F_V^f &= \biggl[\frac{|Z_{Vf}|^2}{1+\text{Re}\,\Sigma'_Z}
 
 \section{The structure of the C++ implementation}
 
-The theory framework is implemented within a structure of classes in C++. In {\sc v1.0}, only the SM predictions for EWPOs and polarized matrix elements near the Z-peak up to NNLO have been implemented. Yet in principle one can use the {\sc GRIFFIN} framework to implement predictions for other observables, different (BSM) models, and/or up to arbitrary higher orders. This section will document the structure of the classes by introducing each class and where to find and modify them in the code.
+The theory framework is implemented within a structure of classes in C++. In {\sc v1.0}, the SM predictions for EWPOs, the muon decay process, and polarized matrix elements near the Z-peak up to full NNLO and partial NNNLO have been implemented. Yet in principle the {\sc GRIFFIN} framework can also accommodate predictions for alternative observables, BSM models up to arbitrary higher orders. This section will document the structure of the classes by introducing each class and where to find and modify them in the code.
 The library has two base classes defined in accordance with input and output.  Table~\ref{tab:twobase} shows the type of quantities that fall into the realm of either base class (assuming the SM for inputs). 
 %We start off by introducing base classes and then their derived, sub-derived classes. For each one of the class, we will discuss its location in the code, dependencies, and how one can possibly vary or extend it.
 
@@ -259,7 +259,8 @@ The library has two base classes defined in accordance with input and output.  T
 \multicolumn{2}{l|}{input parameters (in the SM)}                                                                                                                                                                     & \multicolumn{2}{l}{output observables}                                                                                                                                                                                                                \\ \hline
 \begin{tabular}[c]{@{}l@{}}Boson masses \\ and widths\end{tabular} & \begin{tabular}[c]{@{}l@{}}$M_{\PW,\PZ, \PH}$\\ $\Gamma_{\PW,\PZ}$\end{tabular}                                                                            & \begin{tabular}[c]{@{}l@{}}pesudo-observables \\ defined at Z-peak\end{tabular}                   & \begin{tabular}[c]{@{}l@{}}$F_{V,A}$,\, $\sin^2\theta_{eff}^f$\\ $\Gamma_{\PZ\to f\bar{f}}$ ,\,$\Delta r$,\\  etc.\end{tabular} \\ \hline
 Fermion masses          & \begin{tabular}[c]{@{}l@{}}$m_{\rm e,\mu, \tau}^{\rm OS}$  \\ $m_{\rm d, u, s, c}^{\overline{\text{MS}}}(\MZ)$ \\ $m_{\rm t}^{\rm OS}$\end{tabular}        & \begin{tabular}[c]{@{}l@{}}amplitude coefficients under\\ pole scheme\end{tabular}                & $R\,, S\,, \text{and}\, S'$                                                                                                  \\ \hline
-Couplings               & \begin{tabular}[c]{@{}l@{}}$\alpha(0)$\,\\ $\Delta\alpha\equiv 1-\alpha(0)/\alpha(M_\PZ^2)$\\ $ \alpha_s^{\overline{\text{MS}}}(M_\PZ^2)$,\, $G_{\mu}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}(polarized) matrix element\\ square near Z-peak\end{tabular} & $\re{M_{ij}M_{kl}^{*}}$                                                                                                                
+Couplings               & \begin{tabular}[c]{@{}l@{}}$\alpha(0)$\,\\ $\Delta\alpha\equiv 1-\alpha(0)/\alpha(M_\PZ^2)$\\ $ \alpha_s^{\overline{\text{MS}}}(M_\PZ^2)$,\, $G_{\mu}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}(polarized) matrix element\\ square near Z-peak\end{tabular} & $\re{M_{ij}M_{kl}^{*}}$            
+\\ \hline                                                                                                    
 \end{tabular}
 \caption{The categories of two base classes in GRIFFIN.\label{tab:twobase}}
 \end{table}
@@ -406,7 +407,7 @@ In addition, there are three important member functions passed down to derived c
 \end{itemize}
 This is a derived class of \texttt{inval} providing the SM input parameters scheme $\{\alpha(0)\,, \MW\,,\MZ\}$ in the complex pole mass scheme, where the gauge boson masses and widths are determined from the masses and widths in the  running-width scheme\footnote{The running-width scheme is used by the PDG and most experimental collaborations.} according to
 \begin{equation}
-    \overline{M}=M^{\rm exp}/\sqrt{1+(\Gamma^{\rm exp}/M^{\rm exp})^2} \,\,,\overline{\Gamma}=M^{\rm exp}/\sqrt{1+(\Gamma^{\rm exp}/M^{\rm exp})^2}.
+    \overline{M}=M^{\rm exp}/\sqrt{1+(\Gamma^{\rm exp}/M^{\rm exp})^2} \,\,,\overline{\Gamma}=\Gamma^{\rm exp}/\sqrt{1+(\Gamma^{\rm exp}/M^{\rm exp})^2}.
 \label{massscheme}
 \end{equation}
 To declare the input in the main function, one can write
